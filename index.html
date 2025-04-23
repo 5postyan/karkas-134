@@ -129,39 +129,33 @@
   </nav>
 
   <section id="home">
-  <div class="slider-container">
-    <button class="slider-btn prev" onclick="scrollSlider(-1)">←</button>
+  <div class="slider-container" style="position: relative; overflow: hidden; max-width: 1000px; margin: auto; height: 250px;">
+    <button class="slider-btn prev" onclick="scrollSlider(-1)" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); border: none; color: #fff; font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer; z-index: 1;">←</button>
 
-    <div class="slider-track" id="sliderTrack">
-      <img src="IMG_2096.JPG" alt="Слайд 1" class="slider-image" />
-      <img src="IMG_2094.JPG" alt="Слайд 2" class="slider-image" />
-      <img src="IMG_2099.JPG" alt="Слайд 3" class="slider-image" />
-      <img src="IMG_2097.JPG" alt="Слайд 4" class="slider-image" />
+    <div id="sliderTrack" style="display: flex; transition: transform 0.5s ease-in-out; scroll-behavior: smooth; overflow-x: auto; scrollbar-width: none;">
+      <img src="IMG_2096.JPG" alt="Слайд 1" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
+      <img src="IMG_2094.JPG" alt="Слайд 2" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
+      <img src="IMG_2099.JPG" alt="Слайд 3" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
     </div>
+
+    <button class="slider-btn next" onclick="scrollSlider(1)" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); border: none; color: #fff; font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer; z-index: 1;">→</button>
+  </div>
+</section>
 
     <button class="slider-btn next" onclick="scrollSlider(1)">→</button>
   </div>
 </section>
 
 <script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.opacity = i === index ? '1' : '0';
+ <script>
+  function scrollSlider(direction) {
+    const slider = document.getElementById('sliderTrack');
+    const slideWidth = slider.clientWidth;
+    slider.scrollBy({
+      left: direction * slideWidth,
+      behavior: 'smooth'
     });
   }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
-
-  setInterval(nextSlide, 3000); // каждые 3 секунды
-
-  // стартовое отображение
-  showSlide(currentSlide);
 </script>
 
   <section id="about">
