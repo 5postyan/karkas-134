@@ -243,16 +243,20 @@
   </footer>
 
   <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('#sliderTrack img');
+    const sliderTrack = document.getElementById('sliderTrack');
+
     function scrollSlider(direction) {
-      const slider = document.getElementById('sliderTrack');
-      const slideWidth = slider.clientWidth;
-      slider.scrollBy({
-        left: direction * slideWidth,
-        behavior: 'smooth'
-      });
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
+
+    setInterval(() => {
+      scrollSlider(1); // Переключаем слайд каждую секунду
+    }, 3000); // Интервал 3 секунды
   </script>
 </body>
 </html>
-
-
