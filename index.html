@@ -9,8 +9,8 @@
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-color: #121212; /* тёмный фон */
-      color: #f0f0f0; /* светлый текст */
+      background-color: #121212;
+      color: #f0f0f0;
     }
     header, footer {
       background-color: #1e1e1e;
@@ -34,7 +34,7 @@
       text-decoration: none;
       padding: 1rem;
       display: block;
-      transition: background-color 0.3s, color 0.3s; /* плавная анимация */
+      transition: background-color 0.3s, color 0.3s;
     }
     nav ul li a:hover {
       background-color: #444;
@@ -45,11 +45,40 @@
       max-width: 1000px;
       margin: auto;
     }
-    .slider img {
-      width: 100%;
-      max-height: 400px;
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      max-width: 1000px;
+      margin: auto;
+      height: 250px;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slider-container img {
+      min-width: 100%;
+      height: 250px;
       object-fit: cover;
       border-radius: 8px;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .prev {
+      left: 0;
+    }
+    .next {
+      right: 0;
     }
     .photo-grid {
       display: flex;
@@ -129,47 +158,46 @@
   </nav>
 
   <section id="home">
-  <div class="slider-container" style="position: relative; overflow: hidden; max-width: 1000px; margin: auto; height: 250px;">
-    <button class="slider-btn prev" onclick="scrollSlider(-1)" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); border: none; color: #fff; font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer; z-index: 1;">←</button>
-
-    <div id="sliderTrack" style="display: flex; transition: transform 0.5s ease-in-out; scroll-behavior: smooth; overflow-x: auto; scrollbar-width: none;">
-      <img src="IMG_2096.JPG" alt="Слайд 1" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
-      <img src="IMG_2094.JPG" alt="Слайд 2" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
-      <img src="IMG_2099.JPG" alt="Слайд 3" style="min-width: 100%; height: 250px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />
+    <div class="slider-container">
+      <button class="slider-btn prev" onclick="scrollSlider(-1)">←</button>
+      <div class="slider-track" id="sliderTrack">
+        <img src="IMG_2096.JPG" alt="Слайд 1" />
+        <img src="IMG_2094.JPG" alt="Слайд 2" />
+        <img src="IMG_2099.JPG" alt="Слайд 3" />
+      </div>
+      <button class="slider-btn next" onclick="scrollSlider(1)">→</button>
     </div>
-
-    <button class="slider-btn next" onclick="scrollSlider(1)" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); border: none; color: #fff; font-size: 2rem; padding: 0.5rem 1rem; cursor: pointer; z-index: 1;">→</button>
-  </div>
-</section>
-
-    <button class="slider-btn next" onclick="scrollSlider(1)">→</button>
-  </div>
-</section>
-
-<script>
- <script>
-  function scrollSlider(direction) {
-    const slider = document.getElementById('sliderTrack');
-    const slideWidth = slider.clientWidth;
-    slider.scrollBy({
-      left: direction * slideWidth,
-      behavior: 'smooth'
-    });
-  }
-</script>
+  </section>
 
   <section id="about">
     <h2>О нас</h2>
-    <p>Компания "Каркас134" специализируется на строительстве дачных домов и коттеджей. Стаж в строительстве — более 10 лет. Бригада из четырех человек.</p>
+    <p>Компания "Каркас134" специализируется на строительстве дачных домов и коттеджей.</p>
+    <p>Работаем более 10 лет. За это время успешно реализовали более 100 проектов в Москве и соседних регионах.</p>
+    <p>Наша бригада — это 4 опытных мастера, каждый из которых прошёл путь от подсобника до профессионала.</p>
+    <p>Почему выбирают нас:</p>
+    <ul>
+      <li>Честные сроки и договор</li>
+      <li>Опыт более 10 лет</li>
+      <li>Портфолио с реальными фото</li>
+    </ul>
   </section>
 
   <section id="services">
     <h2>Наши услуги</h2>
-    <ul>
-      <li>Каркасные дома любой сложности.</li>
-      <li>Строительство бань, беседок, террас, летних кухонь.</li>
-      <li>Ремонт и строительство крыш.</li>
-    </ul>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Каркасные дома</h3>
+        <p>Строительство под ключ. От фундамента до кровли. Работаем по ГОСТ и СНиП. Индивидуальные проекты.</p>
+      </div>
+      <div class="service-item">
+        <h3>Бани, беседки, террасы</h3>
+        <p>Деревянные постройки из качественного материала. Бани — с утеплением, отделкой и дымоходом.</p>
+      </div>
+      <div class="service-item">
+        <h3>Ремонт и строительство крыш</h3>
+        <p>Замена кровли, монтаж стропильной системы, утепление, водостоки. Работаем с металлочерепицей, профлистом и др.</p>
+      </div>
+    </div>
   </section>
 
   <section id="contacts">
@@ -213,6 +241,18 @@
       <a href="#">WhatsApp</a>
     </div>
   </footer>
+
+  <script>
+    function scrollSlider(direction) {
+      const slider = document.getElementById('sliderTrack');
+      const slideWidth = slider.clientWidth;
+      slider.scrollBy({
+        left: direction * slideWidth,
+        behavior: 'smooth'
+      });
+    }
+  </script>
 </body>
 </html>
+
 
