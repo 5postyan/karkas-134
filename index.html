@@ -129,11 +129,33 @@
   </nav>
 
   <section id="home">
-    <div class="slider">
-      <img src="IMG_2096.JPG" alt="Слайд 1" />
-      <img src="IMG_2094.JPG" alt="Слайд 3" />
-    </div>
-  </section>
+  <div class="slider">
+    <img class="slide" src="IMG_2096.JPG" alt="Слайд 1" />
+    <img class="slide" src="IMG_2094.JPG" alt="Слайд 2" />
+    <img class="slide" src="IMG_2099.JPG" alt="Слайд 3" />
+  </div>
+</section>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 3000); // каждые 3 секунды
+
+  // стартовое отображение
+  showSlide(currentSlide);
+</script>
 
   <section id="about">
     <h2>О нас</h2>
