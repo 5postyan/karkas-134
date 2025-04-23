@@ -18,6 +18,9 @@
       text-align: center;
       padding: 1rem 0;
     }
+    header h1 {
+      font-weight: 300; /* Тонкий шрифт для "Каркас134" */
+    }
     nav ul {
       display: flex;
       justify-content: center;
@@ -61,24 +64,6 @@
       height: 250px;
       object-fit: cover;
       border-radius: 8px;
-    }
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 1;
-    }
-    .prev {
-      left: 0;
-    }
-    .next {
-      right: 0;
     }
     .photo-grid {
       display: flex;
@@ -159,13 +144,11 @@
 
   <section id="home">
     <div class="slider-container">
-      <button class="slider-btn prev" onclick="scrollSlider(-1)">←</button>
       <div class="slider-track" id="sliderTrack">
         <img src="IMG_2096.JPG" alt="Слайд 1" />
         <img src="IMG_2094.JPG" alt="Слайд 2" />
         <img src="IMG_2099.JPG" alt="Слайд 3" />
       </div>
-      <button class="slider-btn next" onclick="scrollSlider(1)">→</button>
     </div>
   </section>
 
@@ -260,3 +243,4 @@
   </script>
 </body>
 </html>
+
